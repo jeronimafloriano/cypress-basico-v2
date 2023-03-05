@@ -1,7 +1,6 @@
 /// <reference types="Cypress" />
 
 
-
 describe('Central de Atendimento ao Cliente TAT', function() {
 
     this.beforeEach(() => cy.visit('./src/index.html'))
@@ -13,7 +12,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
     it('Preenche os campos obrigatórios e envia o formulário', function() {
         const longText = 'Teste, teste, teste, Teste, teste, teste, Teste, teste, teste, Teste, teste, teste, Teste, teste, teste,Teste, teste, teste, Teste, teste, teste'
 
-        cy.get('#firstName').type('Maria')
+        cy.get('#firstName').type('Maria', { delay: 20})
         cy.get('#lastName').type('Joaquina')
         cy.get('#email').type('mariajoaquina@email.com')
         cy.get('#open-text-area').type(longText, {delay: 0}) //delay 0 escreve o texto todo de uma vez só
@@ -28,7 +27,7 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         cy.get('#firstName').type('João')
         cy.get('#lastName').type('José')
         cy.get('#email').type('#+.!@email.com')
-        cy.get('#open-text-area').type('Envio de formulário com email inválido.', {delay: 50})
+        cy.get('#open-text-area').type('Envio de formulário com email inválido.', {delay: 30})
         cy.contains('.button', 'Enviar').click()
         cy.get('.error').should('be.visible')
     })
@@ -52,19 +51,19 @@ describe('Central de Atendimento ao Cliente TAT', function() {
 
     it('Preenche e limpa os campos nome, sobrenome, email e telefone', function(){
         cy.get('#firstName')
-            .type('Luiz', {delay: 30})
+            .type('Luiz')
             .should('have.value', 'Luiz')
             .clear()
             .should('have.value', '')
 
         cy.get('#lastName')
-            .type('Carlos', {delay: 30})
+            .type('Carlos')
             .should('have.value', 'Carlos')
             .clear()
             .should('have.value', '')
 
         cy.get('#email')
-            .type('luiz123@email.com', {delay: 30})
+            .type('luiz123@email.com')
             .should('have.value', 'luiz123@email.com')
             .clear()
             .should('have.value', '')
