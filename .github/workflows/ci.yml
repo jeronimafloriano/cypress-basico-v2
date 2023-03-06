@@ -3,6 +3,7 @@ on: [push] #Será disparado sempre que houver um 'push'
 jobs: 
   cypress-run:
     runs-on: ubuntu-20.04 #A imagem onde os testes serão rodados
+    using: 'node16'
     steps:                #Passos que serão rodados
       - name: Checkout    #P/ o github baixar o código do projeto no workspace do github actions
         uses: actions/checkout@v2
